@@ -1,5 +1,6 @@
 import {loadCSSFromString, loadCSSFromURLAsync, initializeBlock, useBase, useRecords} from '@airtable/blocks/ui';
-import React from 'react';
+import React, { useRef } from 'react';
+import { Button } from 'react-bootstrap';
 
 // Element creation functions
 import CreateButtons from './CreateButtons';
@@ -8,6 +9,8 @@ import CreateTable from './CreateTable';
 //Supporting Functions
 import normalizeDietaryRestrictions from './normalizeDietaryRestrictions';
 import getDates from './getDates';
+import ReactToPrint from 'react-to-print';
+import ComponentToPrint from './ComponentToPrint';
 
 // Load CSS files
 loadCSSFromURLAsync('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
@@ -185,11 +188,16 @@ function RanchersPerDay() {
     }
   }
 
+  let componentRef = useRef()
+
   // Return the table of data
   return (
     <div style={{width: '98%', paddingTop:'1%', paddingBottom:'1%',paddingLeft:'1%'}}>
       <CreateButtons data={tableRows} />
-      <CreateTable data={tableRows} />
+      <ReactToPrint 
+        trigger={() => <Button>Print</Button>}
+        content={() => componentRef} />
+      <ComponentToPrint ref={(el) => (componentRef = el)} data={tableRows} />
     </div>
   );
 

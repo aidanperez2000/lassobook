@@ -3,7 +3,8 @@
         "@airtable/blocks": "1.8.0",
         "react": "^16.13.0",
         "react-bootstrap": "^2.2.0",
-        "react-dom": "^16.13.0"
+        "react-dom": "^16.13.0",
+        "react-to-print": "^2.14.7"
     },
     "devDependencies": {
         "eslint": "^8.10.0",
