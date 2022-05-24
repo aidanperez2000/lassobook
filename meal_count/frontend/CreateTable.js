@@ -16,12 +16,9 @@ export default function CreateTable({data}) {
           <td style={{width: '10%'}}>{row.guestsRidingKid}</td>
           <td style={{width: '10%'}}>{row.guestsNonRidingKid}</td>
           <td style={{width: '10%'}}>{row.guestsInfant}</td>
-          <td style={{width: '25%'}}><ul>{
-            row.restrictionsArray.map(restriction => {
-              return (
-                <li>{restriction}</li>
-              )
-            })}</ul></td>
+          <td style={{width: '25%'}}>
+            <a href={""}>View Restrictions</a>
+          </td>
         </tr>
       );
   });
