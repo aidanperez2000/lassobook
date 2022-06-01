@@ -88,6 +88,7 @@ function RanchersPerDay() {
       if (!rows.hasOwnProperty(d)) {
         rows[d] = {
           key: '',
+          season: '',
           date: '',
           guestsAdult: 0,
           guestsTeen: 0,
@@ -118,6 +119,9 @@ function RanchersPerDay() {
       // Increment each value found for a date
       rows[d].key = d.toString();
       rows[d].date = d;
+      //Field: Season, ID: fldYx5HzCd33xU5Qo
+      //Staging
+      rows[d].season += record.getCellValue("fldYx5HzCd33xU5Qo");
       // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
       //Production
       //rows[d].guestsAdult += record.getCellValue("fldK1v5LE4rOxRszL");

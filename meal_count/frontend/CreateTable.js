@@ -9,14 +9,15 @@ export default function CreateTable({data}) {
 
       return (
         <tr key={row.key} className={classNames}>
-          <td style={{width: '15%'}}>{row.date}</td>
-          <td style={{width: '10%'}}>{row.totalGuests}</td>
-          <td style={{width: '10%'}}>{row.guestsAdult}</td>
-          <td style={{width: '10%'}}>{row.guestsTeen}</td>
-          <td style={{width: '10%'}}>{row.guestsRidingKid}</td>
-          <td style={{width: '10%'}}>{row.guestsNonRidingKid}</td>
-          <td style={{width: '10%'}}>{row.guestsInfant}</td>
-          <td style={{width: '25%'}}>
+          <td>{row.season}</td>
+          <td>{row.date}</td>
+          <td>{row.totalGuests}</td>
+          <td>{row.guestsAdult}</td>
+          <td>{row.guestsTeen}</td>
+          <td>{row.guestsRidingKid}</td>
+          <td>{row.guestsNonRidingKid}</td>
+          <td>{row.guestsInfant}</td>
+          <td>
             <a href={""}>View Restrictions</a>
           </td>
         </tr>
@@ -28,14 +29,15 @@ export default function CreateTable({data}) {
      <Table bordered hover>
        <thead>
          <tr>
-           <th style={{width: '15%'}}>Date</th>
-           <th style={{width: '10%'}}>#Guests</th>
-           <th style={{width: '10%'}}># Adults</th>
-           <th style={{width: '10%'}}># Teens</th>
-           <th style={{width: '10%'}}># 6-12 y/o</th>
-           <th style={{width: '10%'}}># 3-5 y/o</th>
-           <th style={{width: '10%'}}># Infants</th>
-           <th style={{width: '25%'}}>Dietary Restrictions</th>
+           <th>Season</th>
+           <th>Date</th>
+           <th>#Guests</th>
+           <th># Adults</th>
+           <th># Teens</th>
+           <th># 6-12 y/o</th>
+           <th># 3-5 y/o</th>
+           <th># Infants</th>
+           <th>Dietary Restrictions</th>
          </tr>
        </thead>
        <tbody>
