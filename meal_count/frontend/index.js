@@ -1,4 +1,4 @@
-import {loadCSSFromString, loadCSSFromURLAsync, initializeBlock, useBase, useRecords} from '@airtable/blocks/ui';
+import {loadCSSFromString, loadCSSFromURLAsync, initializeBlock, useBase, useRecords, useRecordById} from '@airtable/blocks/ui';
 import React, { useRef } from 'react';
 import { Button } from 'react-bootstrap';
 
@@ -85,9 +85,12 @@ function RanchersPerDay() {
         continue;
       }
 
+      var customerIds = [];
+
       if (!rows.hasOwnProperty(d)) {
         rows[d] = {
           key: '',
+          customers: '',
           season: '',
           date: '',
           guestsAdult: 0,
@@ -122,6 +125,19 @@ function RanchersPerDay() {
       //Field: Season, ID: fldYx5HzCd33xU5Qo
       //Staging
       rows[d].season += record.getCellValue("fldYx5HzCd33xU5Qo");
+      //Field: Customer, ID: fldFXPfLzx2H85Kj9
+      //Staging 
+      customerIds = record.getCellValue("fldFXPfLzx2H85Kj9");
+      console.log(customerIds);
+      const customerTable = base.getTable("tble2EjIMczVfm9w4");
+      customerIds?.map(customerId => {
+        var customerRecords = useRecordById(customerTable, customerId.toString());
+        customerRecords?.map(customerRecord => {
+          //Field: Customer Name, ID: fldtYTtbetL8dIBpp
+          //Staging
+          rows[d].customer += customerRecord.getCellValue("fldtYTtbetL8dIBpp");
+        });
+      });
       // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
       //Production
       //rows[d].guestsAdult += record.getCellValue("fldK1v5LE4rOxRszL");

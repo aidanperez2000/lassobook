@@ -9,6 +9,10 @@ export default function CreateTable({data}) {
 
       return (
         <tr key={row.key} className={classNames}>
+          <td>{row.customer}</td>
+          {/*Eventually, season will not be displayed.  For now, I 
+          want it displayed so that I can know whether or not the meal
+          count is correct*/}
           <td>{row.season}</td>
           <td>{row.date}</td>
           <td>{row.totalGuests}</td>
@@ -29,6 +33,7 @@ export default function CreateTable({data}) {
      <Table bordered hover>
        <thead>
          <tr>
+           <th>Customer</th>
            <th>Season</th>
            <th>Date</th>
            <th>#Guests</th>
