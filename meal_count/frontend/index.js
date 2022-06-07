@@ -85,12 +85,12 @@ function RanchersPerDay() {
         continue;
       }
 
-      var customerIds = [];
+      var customerId = [];
 
       if (!rows.hasOwnProperty(d)) {
         rows[d] = {
           key: '',
-          customers: '',
+          customer: '',
           season: '',
           date: '',
           guestsAdult: 0,
@@ -127,17 +127,12 @@ function RanchersPerDay() {
       rows[d].season += record.getCellValue("fldYx5HzCd33xU5Qo");
       //Field: Customer, ID: fldFXPfLzx2H85Kj9
       //Staging 
-      customerIds = record.getCellValue("fldFXPfLzx2H85Kj9");
-      console.log(customerIds);
-      const customerTable = base.getTable("tble2EjIMczVfm9w4");
-      customerIds?.map(customerId => {
-        var customerRecords = useRecordById(customerTable, customerId.toString());
-        customerRecords?.map(customerRecord => {
-          //Field: Customer Name, ID: fldtYTtbetL8dIBpp
-          //Staging
-          rows[d].customer += customerRecord.getCellValue("fldtYTtbetL8dIBpp");
-        });
-      });
+      customerId = record.getCellValue("fldFXPfLzx2H85Kj9");
+      console.log(customerId);
+      if (customerId != null) {
+        rows[d].customer += customerId[0].name;
+        console.log(customerId[0].name);
+      }
       // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
       //Production
       //rows[d].guestsAdult += record.getCellValue("fldK1v5LE4rOxRszL");
