@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import { Link } from 'react-router-dom';
 
 export default function CreateTable({data}) {
 
@@ -27,7 +28,7 @@ export default function CreateTable({data}) {
           <td>{row.guestsNonRidingKidDinner}</td>
           <td>{row.guestsInfantDinner}</td>
           <td>
-            <a href={""}>View Restrictions</a>
+            <Link to={`/dietaryrestrictions/${row.key}`}>View Restrictions</Link>
           </td>
         </tr>
       );
