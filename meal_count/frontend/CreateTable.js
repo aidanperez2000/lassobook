@@ -11,11 +11,6 @@ export default function CreateTable({data}) {
         <tr key={row.key} className={classNames}>
           <td>{row.customer}</td>
           <td>{row.totalGuests}</td>
-          {/*Eventually, season will not be displayed.  For now, I 
-          want it displayed so that I can know whether or not the meal
-          count is correct*/}
-          <td>{row.season}</td>
-          <td>{row.date}</td>
           <td>{row.guestsAdultBreakfast}</td>
           <td>{row.guestsTeenBreakfast}</td>
           <td>{row.guestsRidingKidBreakfast}</td>
@@ -44,8 +39,6 @@ export default function CreateTable({data}) {
        <thead>
          <tr>
            <th colSpan={2}>Customer Name and Total</th>
-           <th></th>
-           <th></th>
            <th colSpan={5}>Breakfast</th>
            <th colSpan={5}>Lunch</th>
            <th colSpan={5}>Dinner</th>
@@ -53,8 +46,6 @@ export default function CreateTable({data}) {
          <tr>
            <th>Customer</th>
            <th>#Guests</th>
-           <th>Season</th>
-           <th>Date</th>
            <th># Adults</th>
            <th># Teens</th>
            <th># 6-12 y/o</th>
