@@ -77,115 +77,110 @@ function RanchersPerDay() {
     // Once we have found the date range, loop through each one
     // Set the base array and object
     // Then increment numbers
-    for (var i = 0; i < dates.length; i++) {
-      var d = dates[i];
+    var d = new Date().toISOString().slice(0, 10);
 
-      // If date has already passed, skip it
-      if (d < datesNext10[0]) {
-        continue;
+    // If date has already passed, skip it
+    /*if (d < datesNext10[0]) {
+      continue;
+    }*/
+
+    var customerId = [];
+
+    rows[d] = {
+      key: '',
+      customer: '',
+      season: '',
+      date: '',
+      guestsAdult: 0,
+      guestsTeen: 0,
+      guestsRidingKid: 0,
+      guestsNonRidingKid: 0,
+      guestsInfant: 0,
+      totalGuests: 0,
+      restrictionsArray: [],
+      dietaryRestrictions: '',
+      rowClasses: ['rowShowAll'],
+    };
+
+    // If the date is in the next 10 days, add new class
+    for (var tx = 0; tx < datesNext10.length; tx++) {
+      if (d == datesNext10[tx] && !rows[d].rowClasses.includes('rowShow10')) {
+        rows[d].rowClasses.push('rowShow10');
       }
-
-      var customerId = [];
-
-      if (!rows.hasOwnProperty(d)) {
-        rows[d] = {
-          key: '',
-          customer: '',
-          season: '',
-          date: '',
-          guestsAdult: 0,
-          guestsTeen: 0,
-          guestsRidingKid: 0,
-          guestsNonRidingKid: 0,
-          guestsInfant: 0,
-          totalGuests: 0,
-          restrictionsArray: [],
-          dietaryRestrictions: '',
-          rowClasses: ['rowShowAll'],
-        };
-      }
-
-      // If the date is in the next 10 days, add new class
-      for (var tx = 0; tx < datesNext10.length; tx++) {
-        if (d == datesNext10[tx] && !rows[d].rowClasses.includes('rowShow10')) {
-          rows[d].rowClasses.push('rowShow10');
-        }
-      }
-
-      // If the date is in the next 30 days, add new class
-      for (var tx = 0; tx < datesNext30.length; tx++) {
-        if (d == datesNext30[tx] && !rows[d].rowClasses.includes('rowShow30')) {
-          rows[d].rowClasses.push('rowShow30');
-        }
-      }
-
-      // Increment each value found for a date
-      rows[d].key = d.toString();
-      rows[d].date = d;
-      //Field: Season, ID: fldYx5HzCd33xU5Qo
-      //Staging
-      rows[d].season += record.getCellValue("fldYx5HzCd33xU5Qo");
-      //Field: Customer, ID: fldFXPfLzx2H85Kj9
-      //Staging 
-      customerId = record.getCellValue("fldFXPfLzx2H85Kj9");
-      console.log(customerId);
-      if (customerId != null) {
-        rows[d].customer += customerId[0].name;
-        console.log(customerId[0].name);
-      }
-      // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
-      //Production
-      //rows[d].guestsAdult += record.getCellValue("fldK1v5LE4rOxRszL");
-      //Staging
-      rows[d].guestsAdult += record.getCellValue("fldcYaRxcXeQslqem");
-
-      // Field: Teen Travelers, ID: fldCpX4stPrgebVUr
-      //Production
-      //rows[d].guestsTeen += record.getCellValue("fldCpX4stPrgebVUr");
-      //Staging
-      rows[d].guestsTeen += record.getCellValue("fld4mCQe1Iei9FTz2");
-
-      // Field: 6-12 Travelers, ID: fldTugRzmgR64qpNp
-      //Production
-      //rows[d].guestsRidingKid += record.getCellValue("fldTugRzmgR64qpNp");
-      //Staging
-      rows[d].guestsRidingKid += record.getCellValue("fldlrVDlU9E8ZUns0")
-
-      // Field: 3-5 Travelers, ID: fldRBm2z4ElG0MPF1
-      //Production
-      //rows[d].guestsNonRidingKid += record.getCellValue("fldRBm2z4ElG0MPF1");
-      //Staging
-      rows[d].guestsNonRidingKid += record.getCellValue("fldjy1OlCx8IVgNkC");
-
-      // Field: Infant Travelers, ID: fld3aYa4i0rH6ZeOf
-      //Production
-      //rows[d].guestsInfant += record.getCellValue("fld3aYa4i0rH6ZeOf");
-      //Staging
-      rows[d].guestsInfant += record.getCellValue("fldv7DWQQTeJ1tctQ");
-
-      // Field: Total Guests, ID: fldG3Uwik96n5Ls6r
-      //Production
-      //rows[d].totalGuests += record.getCellValue("fldG3Uwik96n5Ls6r");
-      //Staging
-      rows[d].totalGuests += record.getCellValue("fld80zi4S2Tp0fqL2");
-
-      // Normalize all the dietary restrictions
-      // See normalizeDietaryRestrictions.js for details
-      if (dietaryRestrictions != '') {
-        var restrictions = normalizeDietaryRestrictions(dietaryRestrictions);
-        for (var x = 0; x < restrictions.length; x++) {
-          var str = restrictions[x].name + ' | ' + restrictions[x].restrictions.join(', ');
-
-          // Only add to the final array if it does not exist already
-          if (!rows[d].restrictionsArray.includes(str)) {
-            rows[d].restrictionsArray.push(str);
-          }
-        }
-      }
-
     }
 
-  });
+    // If the date is in the next 30 days, add new class
+    for (var tx = 0; tx < datesNext30.length; tx++) {
+      if (d == datesNext30[tx] && !rows[d].rowClasses.includes('rowShow30')) {
+        rows[d].rowClasses.push('rowShow30');
+      }
+    }
+
+    // Increment each value found for a date
+    rows[d].date = d;
+    //Field: Season, ID: fldYx5HzCd33xU5Qo
+    //Staging
+    rows[d].season += record.getCellValue("fldYx5HzCd33xU5Qo");
+    //Field: Customer, ID: fldFXPfLzx2H85Kj9
+    //Staging 
+    customerId = record.getCellValue("fldFXPfLzx2H85Kj9");
+    rows[d].key = customerId;
+    console.log(customerId);
+    if (customerId != null) {
+      rows[d].customer += customerId[0].name;
+      console.log(customerId[0].name);
+    }
+    // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
+    //Production
+    //rows[d].guestsAdult += record.getCellValue("fldK1v5LE4rOxRszL");
+    //Staging
+    rows[d].guestsAdult += record.getCellValue("fldcYaRxcXeQslqem");
+
+    // Field: Teen Travelers, ID: fldCpX4stPrgebVUr
+    //Production
+    //rows[d].guestsTeen += record.getCellValue("fldCpX4stPrgebVUr");
+    //Staging
+    rows[d].guestsTeen += record.getCellValue("fld4mCQe1Iei9FTz2");
+
+    // Field: 6-12 Travelers, ID: fldTugRzmgR64qpNp
+    //Production
+    //rows[d].guestsRidingKid += record.getCellValue("fldTugRzmgR64qpNp");
+    //Staging
+    rows[d].guestsRidingKid += record.getCellValue("fldlrVDlU9E8ZUns0")
+
+    // Field: 3-5 Travelers, ID: fldRBm2z4ElG0MPF1
+    //Production
+    //rows[d].guestsNonRidingKid += record.getCellValue("fldRBm2z4ElG0MPF1");
+    //Staging
+    rows[d].guestsNonRidingKid += record.getCellValue("fldjy1OlCx8IVgNkC");
+
+    // Field: Infant Travelers, ID: fld3aYa4i0rH6ZeOf
+    //Production
+    //rows[d].guestsInfant += record.getCellValue("fld3aYa4i0rH6ZeOf");
+    //Staging
+    rows[d].guestsInfant += record.getCellValue("fldv7DWQQTeJ1tctQ");
+
+    // Field: Total Guests, ID: fldG3Uwik96n5Ls6r
+    //Production
+    //rows[d].totalGuests += record.getCellValue("fldG3Uwik96n5Ls6r");
+    //Staging
+    rows[d].totalGuests += record.getCellValue("fld80zi4S2Tp0fqL2");
+
+    // Normalize all the dietary restrictions
+    // See normalizeDietaryRestrictions.js for details
+    if (dietaryRestrictions != '') {
+      var restrictions = normalizeDietaryRestrictions(dietaryRestrictions);
+      for (var x = 0; x < restrictions.length; x++) {
+        var str = restrictions[x].name + ' | ' + restrictions[x].restrictions.join(', ');
+
+        // Only add to the final array if it does not exist already
+        if (!rows[d].restrictionsArray.includes(str)) {
+          rows[d].restrictionsArray.push(str);
+        }
+      }
+    }
+
+    });
 
   // Get all the date keys from above and sort them
   const keys = Object.keys(rows);
