@@ -91,11 +91,22 @@ function RanchersPerDay() {
       customer: '',
       season: '',
       date: '',
-      guestsAdult: 0,
-      guestsTeen: 0,
-      guestsRidingKid: 0,
-      guestsNonRidingKid: 0,
-      guestsInfant: 0,
+      guestsAdultBreakfast: 0,
+      guestsTeenBreakfast: 0,
+      guestsRidingKidBreakfast: 0,
+      guestsNonRidingKidBreakfast: 0,
+      guestsInfantBreakfast: 0,
+      totalGuestsBreakfast: 0,
+      guestsAdultLunch: 0,
+      guestsTeenLunch: 0,
+      guestsRidingKidLunch: 0,
+      guestsNonRidingKidLunch: 0,
+      guestsInfantLunch: 0,
+      guestsAdultDinner: 0,
+      guestsTeenDinner: 0,
+      guestsRidingKidDinner: 0,
+      guestsNonRidingKidDinner: 0,
+      guestsInfantDinner: 0,
       totalGuests: 0,
       restrictionsArray: [],
       dietaryRestrictions: '',
@@ -130,35 +141,192 @@ function RanchersPerDay() {
       rows[d].customer += customerId[0].name;
       console.log(customerId[0].name);
     }
-    // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
-    //Production
-    //rows[d].guestsAdult += record.getCellValue("fldK1v5LE4rOxRszL");
-    //Staging
-    rows[d].guestsAdult += record.getCellValue("fldcYaRxcXeQslqem");
+    //If today is the arrival date, guests only get dinner
+    if (new Date(arrivalDate) == new Date()) {
+      // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
+      //Production
+      //rows[d].guestsAdultDinner += record.getCellValue("fldK1v5LE4rOxRszL");
+      //Staging
+      rows[d].guestsAdultDinner += record.getCellValue("fldcYaRxcXeQslqem");
 
-    // Field: Teen Travelers, ID: fldCpX4stPrgebVUr
-    //Production
-    //rows[d].guestsTeen += record.getCellValue("fldCpX4stPrgebVUr");
-    //Staging
-    rows[d].guestsTeen += record.getCellValue("fld4mCQe1Iei9FTz2");
+      // Field: Teen Travelers, ID: fldCpX4stPrgebVUr
+      //Production
+      //rows[d].guestsTeenDinner += record.getCellValue("fldCpX4stPrgebVUr");
+      //Staging
+      rows[d].guestsTeenDinner += record.getCellValue("fld4mCQe1Iei9FTz2");
 
-    // Field: 6-12 Travelers, ID: fldTugRzmgR64qpNp
-    //Production
-    //rows[d].guestsRidingKid += record.getCellValue("fldTugRzmgR64qpNp");
-    //Staging
-    rows[d].guestsRidingKid += record.getCellValue("fldlrVDlU9E8ZUns0")
+      // Field: 6-12 Travelers, ID: fldTugRzmgR64qpNp
+      //Production
+      //rows[d].guestsRidingKidDinner += record.getCellValue("fldTugRzmgR64qpNp");
+      //Staging
+      rows[d].guestsRidingKidDinner += record.getCellValue("fldlrVDlU9E8ZUns0")
 
-    // Field: 3-5 Travelers, ID: fldRBm2z4ElG0MPF1
-    //Production
-    //rows[d].guestsNonRidingKid += record.getCellValue("fldRBm2z4ElG0MPF1");
-    //Staging
-    rows[d].guestsNonRidingKid += record.getCellValue("fldjy1OlCx8IVgNkC");
+      // Field: 3-5 Travelers, ID: fldRBm2z4ElG0MPF1
+      //Production
+      //rows[d].guestsNonRidingKidDinner += record.getCellValue("fldRBm2z4ElG0MPF1");
+      //Staging
+      rows[d].guestsNonRidingKidDinner += record.getCellValue("fldjy1OlCx8IVgNkC");
 
-    // Field: Infant Travelers, ID: fld3aYa4i0rH6ZeOf
-    //Production
-    //rows[d].guestsInfant += record.getCellValue("fld3aYa4i0rH6ZeOf");
-    //Staging
-    rows[d].guestsInfant += record.getCellValue("fldv7DWQQTeJ1tctQ");
+      // Field: Infant Travelers, ID: fld3aYa4i0rH6ZeOf
+      //Production
+      //rows[d].guestsInfantDinner += record.getCellValue("fld3aYa4i0rH6ZeOf");
+      //Staging
+      rows[d].guestsInfantDinner += record.getCellValue("fldv7DWQQTeJ1tctQ");
+      //if today is the departure date, guests get breakfast
+    } else if (new Date(departureDate) == new Date()) {
+      // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
+      //Production
+      //rows[d].guestsAdultBreakfast += record.getCellValue("fldK1v5LE4rOxRszL");
+      //Staging
+      rows[d].guestsAdultBreakfast += record.getCellValue("fldcYaRxcXeQslqem");
+
+      // Field: Teen Travelers, ID: fldCpX4stPrgebVUr
+      //Production
+      //rows[d].guestsTeenBreakfast += record.getCellValue("fldCpX4stPrgebVUr");
+      //Staging
+      rows[d].guestsTeenBreakfast += record.getCellValue("fld4mCQe1Iei9FTz2");
+
+      // Field: 6-12 Travelers, ID: fldTugRzmgR64qpNp
+      //Production
+      //rows[d].guestsRidingKidBreakfast += record.getCellValue("fldTugRzmgR64qpNp");
+      //Staging
+      rows[d].guestsRidingKidBreakfast += record.getCellValue("fldlrVDlU9E8ZUns0")
+
+      // Field: 3-5 Travelers, ID: fldRBm2z4ElG0MPF1
+      //Production
+      //rows[d].guestsNonRidingKidBreakfast += record.getCellValue("fldRBm2z4ElG0MPF1");
+      //Staging
+      rows[d].guestsNonRidingKidBreakfast += record.getCellValue("fldjy1OlCx8IVgNkC");
+
+      // Field: Infant Travelers, ID: fld3aYa4i0rH6ZeOf
+      //Production
+      //rows[d].guestsInfantBreakfast += record.getCellValue("fld3aYa4i0rH6ZeOf");
+      //Staging
+      rows[d].guestsInfantBreakfast += record.getCellValue("fldv7DWQQTeJ1tctQ");
+      //if the season is spring or fall, guests also get lunch
+      if (rows[d].season.includes("fall") || rows[d].season.includes("spring")) {
+        // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
+        //Production
+        //rows[d].guestsAdultLunch += record.getCellValue("fldK1v5LE4rOxRszL");
+        //Staging
+        rows[d].guestsAdultLunch += record.getCellValue("fldcYaRxcXeQslqem");
+
+        // Field: Teen Travelers, ID: fldCpX4stPrgebVUr
+        //Production
+        //rows[d].guestsTeenLunch += record.getCellValue("fldCpX4stPrgebVUr");
+        //Staging
+        rows[d].guestsTeenLunch += record.getCellValue("fld4mCQe1Iei9FTz2");
+
+        // Field: 6-12 Travelers, ID: fldTugRzmgR64qpNp
+        //Production
+        //rows[d].guestsRidingKidLunch += record.getCellValue("fldTugRzmgR64qpNp");
+        //Staging
+        rows[d].guestsRidingKidLunch += record.getCellValue("fldlrVDlU9E8ZUns0")
+
+        // Field: 3-5 Travelers, ID: fldRBm2z4ElG0MPF1
+        //Production
+        //rows[d].guestsNonRidingKidLunch += record.getCellValue("fldRBm2z4ElG0MPF1");
+        //Staging
+        rows[d].guestsNonRidingKidLunch += record.getCellValue("fldjy1OlCx8IVgNkC");
+
+        // Field: Infant Travelers, ID: fld3aYa4i0rH6ZeOf
+        //Production
+        //rows[d].guestsInfantLunch += record.getCellValue("fld3aYa4i0rH6ZeOf");
+        //Staging
+        rows[d].guestsInfantLunch += record.getCellValue("fldv7DWQQTeJ1tctQ");
+      }
+      //Otherwise, they get all three meals 
+    } else {
+      // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
+      //Production
+      //rows[d].guestsAdultBreakfast += record.getCellValue("fldK1v5LE4rOxRszL");
+      //Staging
+      rows[d].guestsAdultBreakfast += record.getCellValue("fldcYaRxcXeQslqem");
+
+      // Field: Teen Travelers, ID: fldCpX4stPrgebVUr
+      //Production
+      //rows[d].guestsTeenBreakfast += record.getCellValue("fldCpX4stPrgebVUr");
+      //Staging
+      rows[d].guestsTeenBreakfast += record.getCellValue("fld4mCQe1Iei9FTz2");
+
+      // Field: 6-12 Travelers, ID: fldTugRzmgR64qpNp
+      //Production
+      //rows[d].guestsRidingKidBreakfast += record.getCellValue("fldTugRzmgR64qpNp");
+      //Staging
+      rows[d].guestsRidingKidBreakfast += record.getCellValue("fldlrVDlU9E8ZUns0")
+
+      // Field: 3-5 Travelers, ID: fldRBm2z4ElG0MPF1
+      //Production
+      //rows[d].guestsNonRidingKidBreakfast += record.getCellValue("fldRBm2z4ElG0MPF1");
+      //Staging
+      rows[d].guestsNonRidingKidBreakfast += record.getCellValue("fldjy1OlCx8IVgNkC");
+
+      // Field: Infant Travelers, ID: fld3aYa4i0rH6ZeOf
+      //Production
+      //rows[d].guestsInfantBreakfast += record.getCellValue("fld3aYa4i0rH6ZeOf");
+      //Staging
+      rows[d].guestsInfantBreakfast += record.getCellValue("fldv7DWQQTeJ1tctQ");
+
+      // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
+      //Production
+      //rows[d].guestsAdultLunch += record.getCellValue("fldK1v5LE4rOxRszL");
+      //Staging
+      rows[d].guestsAdultLunch += record.getCellValue("fldcYaRxcXeQslqem");
+
+      // Field: Teen Travelers, ID: fldCpX4stPrgebVUr
+      //Production
+      //rows[d].guestsTeenLunch += record.getCellValue("fldCpX4stPrgebVUr");
+      //Staging
+      rows[d].guestsTeenLunch += record.getCellValue("fld4mCQe1Iei9FTz2");
+
+      // Field: 6-12 Travelers, ID: fldTugRzmgR64qpNp
+      //Production
+      //rows[d].guestsRidingKidLunch += record.getCellValue("fldTugRzmgR64qpNp");
+      //Staging
+      rows[d].guestsRidingKidLunch += record.getCellValue("fldlrVDlU9E8ZUns0")
+
+      // Field: 3-5 Travelers, ID: fldRBm2z4ElG0MPF1
+      //Production
+      //rows[d].guestsNonRidingKidLunch += record.getCellValue("fldRBm2z4ElG0MPF1");
+      //Staging
+      rows[d].guestsNonRidingKidLunch += record.getCellValue("fldjy1OlCx8IVgNkC");
+
+      // Field: Infant Travelers, ID: fld3aYa4i0rH6ZeOf
+      //Production
+      //rows[d].guestsInfantLunch += record.getCellValue("fld3aYa4i0rH6ZeOf");
+      //Staging
+      rows[d].guestsInfantLunch += record.getCellValue("fldv7DWQQTeJ1tctQ");
+
+      // Field: Adult Travelers, ID: fldK1v5LE4rOxRszL
+      //Production
+      //rows[d].guestsAdultDinner += record.getCellValue("fldK1v5LE4rOxRszL");
+      //Staging
+      rows[d].guestsAdultDinner += record.getCellValue("fldcYaRxcXeQslqem");
+
+      // Field: Teen Travelers, ID: fldCpX4stPrgebVUr
+      //Production
+      //rows[d].guestsTeenDinner += record.getCellValue("fldCpX4stPrgebVUr");
+      //Staging
+      rows[d].guestsTeenDinner += record.getCellValue("fld4mCQe1Iei9FTz2");
+
+      // Field: 6-12 Travelers, ID: fldTugRzmgR64qpNp
+      //Production
+      //rows[d].guestsRidingKidDinner += record.getCellValue("fldTugRzmgR64qpNp");
+      //Staging
+      rows[d].guestsRidingKidDinner += record.getCellValue("fldlrVDlU9E8ZUns0")
+
+      // Field: 3-5 Travelers, ID: fldRBm2z4ElG0MPF1
+      //Production
+      //rows[d].guestsNonRidingKidDinner += record.getCellValue("fldRBm2z4ElG0MPF1");
+      //Staging
+      rows[d].guestsNonRidingKidDinner += record.getCellValue("fldjy1OlCx8IVgNkC");
+
+      // Field: Infant Travelers, ID: fld3aYa4i0rH6ZeOf
+      //Production
+      //rows[d].guestsInfantDinner += record.getCellValue("fld3aYa4i0rH6ZeOf");
+      //Staging
+      rows[d].guestsInfantDinner += record.getCellValue("fldv7DWQQTeJ1tctQ");
+    }
 
     // Field: Total Guests, ID: fldG3Uwik96n5Ls6r
     //Production

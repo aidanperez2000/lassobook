@@ -10,17 +10,27 @@ export default function CreateTable({data}) {
       return (
         <tr key={row.key} className={classNames}>
           <td>{row.customer}</td>
+          <td>{row.totalGuests}</td>
           {/*Eventually, season will not be displayed.  For now, I 
           want it displayed so that I can know whether or not the meal
           count is correct*/}
           <td>{row.season}</td>
           <td>{row.date}</td>
-          <td>{row.totalGuests}</td>
-          <td>{row.guestsAdult}</td>
-          <td>{row.guestsTeen}</td>
-          <td>{row.guestsRidingKid}</td>
-          <td>{row.guestsNonRidingKid}</td>
-          <td>{row.guestsInfant}</td>
+          <td>{row.guestsAdultBreakfast}</td>
+          <td>{row.guestsTeenBreakfast}</td>
+          <td>{row.guestsRidingKidBreakfast}</td>
+          <td>{row.guestsNonRidingKidBreakfast}</td>
+          <td>{row.guestsInfantBreakfast}</td>
+          <td>{row.guestsAdultLunch}</td>
+          <td>{row.guestsTeenLunch}</td>
+          <td>{row.guestsRidingKidLunch}</td>
+          <td>{row.guestsNonRidingKidLunch}</td>
+          <td>{row.guestsInfantLunch}</td>
+          <td>{row.guestsAdultDinner}</td>
+          <td>{row.guestsTeenDinner}</td>
+          <td>{row.guestsRidingKidDinner}</td>
+          <td>{row.guestsNonRidingKidDinner}</td>
+          <td>{row.guestsInfantDinner}</td>
           <td>
             <a href={""}>View Restrictions</a>
           </td>
@@ -33,10 +43,28 @@ export default function CreateTable({data}) {
      <Table bordered hover>
        <thead>
          <tr>
+           <th colSpan={2}>Customer Name and Total</th>
+           <th></th>
+           <th></th>
+           <th colSpan={5}>Breakfast</th>
+           <th colSpan={5}>Lunch</th>
+           <th colSpan={5}>Dinner</th>
+         </tr>
+         <tr>
            <th>Customer</th>
+           <th>#Guests</th>
            <th>Season</th>
            <th>Date</th>
-           <th>#Guests</th>
+           <th># Adults</th>
+           <th># Teens</th>
+           <th># 6-12 y/o</th>
+           <th># 3-5 y/o</th>
+           <th># Infants</th>
+           <th># Adults</th>
+           <th># Teens</th>
+           <th># 6-12 y/o</th>
+           <th># 3-5 y/o</th>
+           <th># Infants</th>
            <th># Adults</th>
            <th># Teens</th>
            <th># 6-12 y/o</th>
