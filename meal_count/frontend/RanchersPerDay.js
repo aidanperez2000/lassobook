@@ -362,7 +362,26 @@ export default function RanchersPerDay() {
     }
   
     let componentRef = useRef()
-  
+
+    let minusButton;
+
+    if (new Date(tableRows[0].date) === new Date()) {
+      minusButton = <Button disabled={true}>-</Button>
+    } else {
+      minusButton = <Button onClick={decrementDate}>-</Button>
+    }
+
+    let headerDate = new Date(tableRows[0].date)
+    function decrementDate() {
+      headerDate.setDate(headerDate.getDate() - 1);
+      tableRows[0].date = headerDate;
+    }
+
+    function incrementDate() {
+      headerDate.setDate(headerDate.getDate() + 1);
+      tableRows[0].date = headerDate;
+    }
+    
     // Return the table of data
     return (
       <div style={{width: '98%', paddingTop:'1%', paddingBottom:'1%',paddingLeft:'1%'}}>
@@ -370,7 +389,9 @@ export default function RanchersPerDay() {
         <ReactToPrint 
           trigger={() => <Button>Print</Button>}
           content={() => componentRef} />
-        <h1 style={{textAlign: "center"}}>{tableRows[0].date}</h1>
+        <h1 style={{textAlign: "center"}}>
+          {minusButton} {tableRows[0].date} <Button onClick={incrementDate}>+</Button>
+          </h1>
         <ComponentToPrint ref={(el) => (componentRef = el)} data={tableRows} />
       </div>
     );
