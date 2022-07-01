@@ -91,7 +91,6 @@ export default function RanchersPerDay() {
         guestsRidingKidBreakfast: 0,
         guestsNonRidingKidBreakfast: 0,
         guestsInfantBreakfast: 0,
-        totalGuestsBreakfast: 0,
         guestsAdultLunch: 0,
         guestsTeenLunch: 0,
         guestsRidingKidLunch: 0,
@@ -381,7 +380,7 @@ export default function RanchersPerDay() {
       headerDate.setDate(headerDate.getDate() + 1);
       tableRows[0].date = headerDate;
     }
-    
+
     // Return the table of data
     return (
       <div style={{width: '98%', paddingTop:'1%', paddingBottom:'1%',paddingLeft:'1%'}}>

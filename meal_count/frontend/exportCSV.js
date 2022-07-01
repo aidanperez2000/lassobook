@@ -6,29 +6,34 @@ export default function exportCSV({data}) {
 
   // Set the headers for the CSV
   const headers  = {
-    date: 'Date',
-    guestsAdult: 'Total Adults',
-    guestsTeen: 'Total Teens',
-    guestsRidingKid: 'Total 6-12',
-    guestsNonRidingKid: 'Total 3-5',
-    guestsInfant: 'Total Infants',
-    totalGuests: 'Total Guests',
-    dietaryRestrictions: 'Dietary Restrictions'
+    customer: 'Customer',
+    date: "Date",
+    guestsAdultBreakfast: 'Total Adult Breakfast',
+    guestsTeenBreakfast: 'Total Teens Breakfast',
+    guestsRidingKidBreakfast: 'Total 6-12 Breakfast',
+    guestsNonRidingKidBreakfast: 'Total 3-5 Breakfast',
+    guestsInfantBreakfast: 'Total Infants Breakfast',
+    guestsAdultLunch: 'Total Adult Lunch',
+    guestsTeenLunch: 'Total Teens Lunch',
+    guestsRidingKidLunch: 'Total 6-12 Lunch',
+    guestsNonRidingKidLunch: 'Total 3-5 Lunch',
+    guestsInfantLunch: 'Total Infants Lunch',
+    guestsAdultDinner: 'Total Adult Dinner',
+    guestsTeenDinner: 'Total Teens Dinner',
+    guestsRidingKidDinner: 'Total 6-12 Dinner',
+    guestsNonRidingKidDinner: 'Total 3-5 Dinner',
+    guestsInfantDinner: 'Total Infants Dinner',
+    totalGuests: 'Total Guests'
   };
 
   // Loop through the data and clean it up for CSV
   for (var x = 0; x < data.length; x++) {
-    data[x].dietaryRestrictions = data[x].restrictionsArray.join(" ; ");
-
-    // If dietary restrictions have a comma in the line, place double quotes around the line for formatting
-    if (data[x].dietaryRestrictions.indexOf(',') >= 0) {
-      data[x].dietaryRestrictions = '"' + data[x].dietaryRestrictions + '"';
-    }
-
     // Delete items we don't need for CSV
     delete(data[x].restrictionsArray);
     delete(data[x].rowClasses);
     delete(data[x].key);
+    delete(data[x].dietaryRestrictions)
+    delete(data[x].season);
   }
 
   // Add the headers as the first array element
