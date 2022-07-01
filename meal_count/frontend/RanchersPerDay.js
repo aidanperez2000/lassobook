@@ -370,6 +370,7 @@ export default function RanchersPerDay() {
         <ReactToPrint 
           trigger={() => <Button>Print</Button>}
           content={() => componentRef} />
+        <h1 style={{textAlign: "center"}}>{tableRows[0].date}</h1>
         <ComponentToPrint ref={(el) => (componentRef = el)} data={tableRows} />
       </div>
     );
