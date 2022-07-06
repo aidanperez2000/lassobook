@@ -26,7 +26,7 @@ export default function DietaryRestrictions() {
 
         // if no departure date, set to arrival date
         if (departureDate === null) {
-        departureDate = arrivalDate;
+            departureDate = arrivalDate;
         }
 
         var finalDate = new Date(departureDate);
