@@ -104,7 +104,7 @@ export default function CreateTable({data}) {
        <tbody>
        {finalRows}
        <tr>
-         <td>Total</td>
+         <td style={{ fontWeight: "bold" }}>Total</td>
          <td>{totalTotalGuests}</td>
          <td>{totalGuestsAdultBreakfast}</td>
          <td>{totalGuestsTeenBreakfast}</td>
