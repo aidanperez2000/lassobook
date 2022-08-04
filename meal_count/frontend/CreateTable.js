@@ -3,6 +3,42 @@ import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 
 export default function CreateTable({data}) {
+  let totalTotalGuests = 0;
+  let totalGuestsAdultBreakfast = 0;
+  let totalGuestsTeenBreakfast = 0;
+  let totalGuestsRidingKidBreakfast = 0;
+  let totalGuestsNonRidingKidBreakfast = 0;
+  let totalGuestsInfantBreakfast = 0;
+  let totalGuestsAdultLunch = 0;
+  let totalGuestsTeenLunch = 0;
+  let totalGuestsRidingKidLunch = 0;
+  let totalGuestsNonRidingKidLunch = 0;
+  let totalGuestsInfantLunch = 0;
+  let totalGuestsAdultDinner = 0;
+  let totalGuestsTeenDinner = 0;
+  let totalGuestsRidingKidDinner = 0;
+  let totalGuestsNonRidingKidDinner = 0;
+  let totalGuestsInfantDinner = 0;
+
+  //Calculate totals
+  for (let i = 0; i < data.length; i++) {
+    totalTotalGuests += data[i].totalGuests;
+    totalGuestsAdultBreakfast += data[i].guestsAdultBreakfast;
+    totalGuestsTeenBreakfast += data[i].guestsTeenBreakfast;
+    totalGuestsRidingKidBreakfast += data[i].guestsRidingKidBreakfast;
+    totalGuestsNonRidingKidBreakfast += data[i].guestsNonRidingKidBreakfast;
+    totalGuestsInfantBreakfast += data[i].guestsInfantBreakfast;
+    totalGuestsAdultLunch += data[i].guestsAdultLunch;
+    totalGuestsTeenLunch += data[i].guestsTeenLunch;
+    totalGuestsRidingKidLunch += data[i].guestsRidingKidLunch;
+    totalGuestsNonRidingKidLunch += data[i].guestsNonRidingKidLunch;
+    totalGuestsInfantLunch += data[i].guestsInfantLunch;
+    totalGuestsAdultDinner += data[i].guestsAdultDinner;
+    totalGuestsTeenDinner += data[i].guestsTeenDinner;
+    totalGuestsRidingKidDinner += data[i].guestsRidingKidDinner;
+    totalGuestsNonRidingKidDinner += data[i].guestsNonRidingKidDinner;
+    totalGuestsInfantDinner += data[i].guestsInfantDinner;
+  }
 
   const finalRows = data.map(row => {
 
@@ -67,6 +103,25 @@ export default function CreateTable({data}) {
        </thead>
        <tbody>
        {finalRows}
+       <tr>
+         <td>Total</td>
+         <td>{totalTotalGuests}</td>
+         <td>{totalGuestsAdultBreakfast}</td>
+         <td>{totalGuestsTeenBreakfast}</td>
+         <td>{totalGuestsRidingKidBreakfast}</td>
+         <td>{totalGuestsNonRidingKidBreakfast}</td>
+         <td>{totalGuestsInfantBreakfast}</td>
+         <td>{totalGuestsAdultLunch}</td>
+         <td>{totalGuestsTeenLunch}</td>
+         <td>{totalGuestsRidingKidLunch}</td>
+         <td>{totalGuestsNonRidingKidLunch}</td>
+         <td>{totalGuestsInfantLunch}</td>
+         <td>{totalGuestsAdultDinner}</td>
+         <td>{totalGuestsTeenDinner}</td>
+         <td>{totalGuestsRidingKidDinner}</td>
+         <td>{totalGuestsNonRidingKidDinner}</td>
+         <td>{totalGuestsInfantDinner}</td>
+       </tr>
        </tbody>
      </Table>
    );
